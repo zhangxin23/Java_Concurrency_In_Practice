@@ -17,7 +17,7 @@ public class DesktopSearch {
     private static final int CONSUMERS_MAX = 100;
 
     public static void startIndexing(File[] roots) {
-        BlockingQueue<File> queue = new LinkedBlockingQueue<>(BOUND);
+        BlockingQueue<File> queue = new LinkedBlockingQueue<File>(BOUND);
         FileFilter filter = new FileFilter() {
             @Override
             public boolean accept(File file) {

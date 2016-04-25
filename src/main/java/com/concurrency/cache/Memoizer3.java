@@ -46,7 +46,7 @@ import java.util.concurrent.FutureTask;
  */
 public class Memoizer3<A, V> implements Computable<A, V> {
 
-	private final Map<A, Future<V>> cache = new ConcurrentHashMap<>();
+	private final Map<A, Future<V>> cache = new ConcurrentHashMap<A, Future<V>>();
 	private final Computable<A, V> c;
 	
 	public Memoizer3(Computable<A, V> c) {
@@ -69,7 +69,7 @@ public class Memoizer3<A, V> implements Computable<A, V> {
 				}
 			};
 			
-			FutureTask<V> ft = new FutureTask<>(eval);
+			FutureTask<V> ft = new FutureTask<V>(eval);
 			f = ft;
 			cache.put(arg, ft); // 漏洞！
 			ft.run(); // 在这里将调用 c.compute

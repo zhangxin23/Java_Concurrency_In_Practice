@@ -34,7 +34,7 @@ import java.util.Map;
  */
 public class Memoizer1<A, V> implements Computable<A, V> {
 
-	private final Map<A, V> cache = new HashMap<>(); // 保存之前计算的结果
+	private final Map<A, V> cache = new HashMap<A, V>(); // 保存之前计算的结果
 	private final Computable<A, V> c;
 	
 	public Memoizer1(Computable<A, V> c) {

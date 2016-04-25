@@ -36,8 +36,7 @@ public class TimeStatsLatch {
 	 * @return
 	 * @throws InterruptedException
 	 */
-	public static long timeTasks(int nThreads, final Runnable task) 
-			throws InterruptedException {
+	public static long timeTasks(int nThreads, final Runnable task) throws InterruptedException {
 		final CountDownLatch startGate = new CountDownLatch(1); // 起始门
 		final CountDownLatch endGate = new CountDownLatch(nThreads); // 结束门
 		
@@ -67,4 +66,18 @@ public class TimeStatsLatch {
 		return endTime - startTime;
 	}
 
+	public static void main(String[] args) throws InterruptedException {
+        long time = timeTasks(10, new Runnable() {
+            public void run() {
+                try {
+                    Thread.sleep(1000);
+                    System.out.println("======" + System.currentTimeMillis() + "======");
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+            }
+        });
+
+        System.out.println("消耗的时间: " + time);
+	}
 }

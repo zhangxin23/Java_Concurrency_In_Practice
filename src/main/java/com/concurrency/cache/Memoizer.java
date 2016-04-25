@@ -51,7 +51,7 @@ import java.util.concurrent.FutureTask;
  */
 public class Memoizer<A, V> implements Computable<A, V> {
 
-	private final ConcurrentMap<A, Future<V>> cache = new ConcurrentHashMap<>();
+	private final ConcurrentMap<A, Future<V>> cache = new ConcurrentHashMap<A, Future<V>>();
 	private final Computable<A, V> c;
 	
 	public Memoizer(Computable<A, V> c) {
@@ -75,7 +75,7 @@ public class Memoizer<A, V> implements Computable<A, V> {
 					}
 				};
 				
-				FutureTask<V> ft = new FutureTask<>(eval);
+				FutureTask<V> ft = new FutureTask<V>(eval);
 				f = cache.putIfAbsent(arg, ft); // 先检查计算是否已经开始，避免漏洞！
 				if (f == null) {
 					f = ft;

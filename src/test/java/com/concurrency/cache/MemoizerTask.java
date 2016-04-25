@@ -31,7 +31,7 @@ public class MemoizerTask implements Runnable {
 	
 	public MemoizerTask(String key) {
 		Computable<String, BigInteger> computable = new ExpensiveFunction();
-		this.memoizer = new Memoizer<>(computable);
+		this.memoizer = new Memoizer<String, BigInteger>(computable);
 		
 		this.key = key;
 	}

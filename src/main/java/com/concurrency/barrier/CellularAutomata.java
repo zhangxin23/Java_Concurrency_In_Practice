@@ -25,7 +25,7 @@ public class CellularAutomata {
                         mainBoard.commitNewValues();
                     }
                 });
-        this.workers = new ArrayList<>(count);
+        this.workers = new ArrayList<Worker>(count);
         for (int i = 0; i < count; i++) {
             workers.add(new Worker(mainBoard.getSubBoard(count, i)));
         }
